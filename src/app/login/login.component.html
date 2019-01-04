@@ -1,0 +1,37 @@
+<div nz-row>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8">
+    <nz-card style="width:300px; margin-top:150px;">
+      <ng-template #title>
+        博客--登陆
+      </ng-template>
+      <ng-template #extra>
+      </ng-template>
+      <ng-template #body>
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group nzPrefixIcon="anticon anticon-user">
+                <input type="text" nz-input formControlName="name" placeholder="用户名">
+              </nz-input-group>
+              <nz-form-explain ></nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group nzPrefixIcon="anticon anticon-lock">
+                <input type="password" nz-input formControlName="password" placeholder="密码">
+              </nz-input-group>
+              <nz-form-explain></nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登陆</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </ng-template>
+    </nz-card>
+  </div>
+</div>
