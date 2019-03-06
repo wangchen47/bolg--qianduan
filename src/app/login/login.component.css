@@ -9,3 +9,11 @@
 .login-form-button {
   width: 100%;
 }
+
+p {
+  margin: 0;
+}
+
+:host ::ng-deep .ant-btn {
+  margin-right: 1em;
+}
