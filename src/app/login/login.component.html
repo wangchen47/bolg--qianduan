@@ -2,15 +2,17 @@
   <div nz-col nzSpan="8"></div>
   <div nz-col nzSpan="8">
     <div style="background: #ECECEC;padding:30px;">
-    <nz-card style="width:600px;" [nzBordered]="false" nzTitle="博客--登录">
+    <nz-card style="width:580px;" [nzBordered]="false" nzTitle="博客--登录">
         <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
           <nz-form-item>
             <nz-form-control>
               <nz-input-group  [nzPrefix]="prefixUser">
                 <input type="text" nz-input formControlName="name" placeholder="用户名">
               </nz-input-group>
-              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">请输入您的姓名!</nz-form-explain>
-              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').hasError('maxLength')">超过规定长度!</nz-form-explain>
+              {{validateForm.get('name').errors | json }}
+              {{validateForm.get('name').errors?.maxLength | json}}
+              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors?.required">请输入您的姓名!</nz-form-explain>
+              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors?.maxLength">超过规定长度!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -18,8 +20,10 @@
               <nz-input-group [nzPrefix]="prefixLock">
                 <input type="password" nz-input formControlName="password" placeholder="密码">
               </nz-input-group>
-              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').hasError('required')">请输入密码!</nz-form-explain>
-              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">密码长度未达到规定!</nz-form-explain>
+              {{validateForm.get('password').errors | json }}
+              {{validateForm.get('password').errors?.minLength | json}}
+              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors?.required">请输入密码!</nz-form-explain>
+              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors?.minLength">密码长度未达到规定!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
