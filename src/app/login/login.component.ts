@@ -28,20 +28,24 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigateByUrl('/login');
       }
+      if (data.status === 401) {
+              this.showError();
+      } else {
+              this.showSuccess();
+      }
     },
       (error) => {
         console.log(error);
-        this.showError(error);
         }
       );
   }
 
-  showSuccess(msg): void {
-    this.notification.create('success', '成功', msg);
+  showSuccess(): void {
+    this.notification.create('success', '成功','登陆成功');
   }
 
-  showError(msg): void {
-    this.notification.create('error', '错误', msg);
+  showError(): void {
+    this.notification.create('error', '错误', '登陆失败');
   }
 
   constructor(private fb: FormBuilder, private loginService: LoginService,  private router: Router, private notification: NzNotificationService) {

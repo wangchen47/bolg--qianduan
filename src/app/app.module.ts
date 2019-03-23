@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ArticleComponent } from './article/article.component';
+import { ArticleFormComponent } from './article-form/article-form.component';
 
 registerLocaleData(zh);
 
@@ -20,7 +22,9 @@ registerLocaleData(zh);
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ArticleComponent,
+    ArticleFormComponent
   ],
   imports: [
     BrowserModule,

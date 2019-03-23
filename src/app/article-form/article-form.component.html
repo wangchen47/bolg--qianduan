@@ -1,0 +1,77 @@
+<div nz-row>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8">
+    <div style="background: #ECECEC;padding:30px;">
+      <nz-card style="width:580px;" [nzBordered]="false">
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzRequired>标题</nz-form-label>
+            <nz-form-control [nzSpan]="96" nzHasFeedback>
+              <input nz-input formControlName="title" placeholder="请输入文章标题">
+              <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">
+                <ng-container *ngIf="validateForm.get('title').hasError('required')">
+                  文章标题不能为空！
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzRequired>简介</nz-form-label>
+            <nz-form-control [nzSpan]="96" nzHasFeedback>
+              <textarea formControlName="intro" nz-input rows="3" placeholder="请填写简介"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('intro').dirty && validateForm.get('intro').errors">
+                <ng-container *ngIf="validateForm.get('intro').hasError('required')">
+                  文章简介不能为空！
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzRequired>内容</nz-form-label>
+            <nz-form-control [nzSpan]="96" nzHasFeedback>
+              <textarea formControlName="content" nz-input rows="30" placeholder="请填写内容"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('content').dirty && validateForm.get('content').errors">
+                <ng-container *ngIf="validateForm.get('content').hasError('required')">
+                  文章内容不能为空！
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzFor="techCategory" nzRequired>分类</nz-form-label>
+            <nz-form-control [nzSpan]="96">
+              <nz-select id="techCategory" formControlName="techCategory" nzPlaceHolder="请选择你的技术分类" nzAllowClear>
+                <nz-option nzValue="PHP" nzLabel="PHP"></nz-option>
+                <nz-option nzValue="Angular" nzLabel="Angular"></nz-option>
+                <nz-option nzValue="Node.js" nzLabel="Node.js"></nz-option>
+                <nz-option nzValue="Laravel" nzLabel="Laravel"></nz-option>
+                <nz-option nzValue="TinkPHP" nzLabel="TinkPHP"></nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="validateForm.get('techCategory').dirty && validateForm.get('techCategory').hasError('required')">请选择你的技术分类!</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzRequired>标签</nz-form-label>
+            <nz-form-control [nzSpan]="96" nzHasFeedback>
+              <input nz-input formControlName="label" placeholder="请输入文章标签">
+              <nz-form-explain *ngIf="validateForm.get('label').dirty && validateForm.get('label').errors">
+                <ng-container *ngIf="validateForm.get('label').hasError('required')">
+                  标签不能为空！
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="56">
+              <button nz-button nzType="primary" [disabled]="!validateForm.valid">提交</button>
+              <button nz-button (click)="resetForm($event)">重置</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+  <div nz-col nzSpan="8"></div>
+</div>
+
+

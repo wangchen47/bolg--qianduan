@@ -12,7 +12,7 @@
               {{validateForm.get('name').errors | json }}
               {{validateForm.get('name').errors?.maxLength | json}}
               <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors?.required">请输入您的姓名!</nz-form-explain>
-              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors?.maxLength">超过规定长度!</nz-form-explain>
+              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors?.maxlength">超过规定长度!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -23,7 +23,7 @@
               {{validateForm.get('password').errors | json }}
               {{validateForm.get('password').errors?.minLength | json}}
               <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors?.required">请输入密码!</nz-form-explain>
-              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors?.minLength">密码长度未达到规定!</nz-form-explain>
+              <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors?.minlength">密码长度未达到规定!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>

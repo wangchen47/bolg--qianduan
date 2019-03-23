@@ -1,0 +1,91 @@
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+    <div class="logo">
+      <a [routerLink]="['../home']"><i nz-icon [type]="'home'"></i>HOME</a>
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu>
+        <span title><i nz-icon type="user"></i><span class="nav-text">文章</span></span>
+        <ul>
+          <li nz-menu-item><a [routerLink]="['./article']">文章管理</a></li>
+          <li nz-menu-item>发布文章</li>
+          <li nz-menu-item>分类管理</li>
+          <li nz-menu-item>标签管理</li>
+          <li nz-menu-item>回收站</li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title><i nz-icon type="team"></i><span class="nav-text">扩展</span></span>
+        <ul>
+          <li nz-menu-item>导航管理</li>
+          <li nz-menu-item>评论管理</li>
+        </ul>
+      </li>
+      <li nz-menu-item><span><i nz-icon type="file"></i><span class="nav-text">设置</span></span></li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header style="background: #fff; padding:0;">
+      <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
+    </nz-header>
+    <nz-content style="margin:0 16px;">
+      <nz-breadcrumb style="margin:16px 0;">
+        <nz-breadcrumb-item>首页</nz-breadcrumb-item>
+        <nz-breadcrumb-item>文章</nz-breadcrumb-item>
+        <nz-breadcrumb-item>文章管理</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div style="padding:24px; background: #fff; min-height: 360px;">
+        <div nz-row>
+          <div nz-col nzSpan="6"><button nz-button nzType="primary"  (click)="newArticle()"><i nz-icon type="plus" theme="outline"></i>新增</button></div>
+          <div nz-col nzSpan="6"><button nz-button nzType="primary" (click)="deleteArticleById()"><i nz-icon type="delete" theme="outline"></i>删除</button></div>
+          <div nz-col nzSpan="6">请选择过滤输入框</div>
+          <div nz-col nzSpan="6"><nz-input-group nzSearch [nzSuffix]="suffixIconButton">
+            <input type="text" nz-input placeholder="请输入内容">
+          </nz-input-group>
+            <ng-template #suffixIconButton>
+              <button nz-button nzType="primary" nzSearch ><i nz-icon type="search"></i></button>
+            </ng-template>
+          </div>
+        </div>
+
+        <nz-table
+          #rowSelectionTable
+          [nzFrontPagination]="false"
+          [nzTotal]="total"
+          [(nzPageIndex)]="pageIndex"
+          [(nzPageSize)]="pageSize"
+          [nzData]="articles"
+          nzShowSizeChanger
+          (nzCurrentPageDataChange)="currentPageDataChange($event)"
+          (nzPageIndexChange)="getArticles()"
+          (nzPageSizeChange)="getArticles()">
+          <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr>
+            <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>
+            <th nzShowSort nzSortKey="title">标题</th>
+            <th>文章简介</th>
+            <th>技术分类</th>
+            <th nzShowSort nzSortKey="label">标签分类</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let article of articles">
+            <td nzShowCheckbox [(nzChecked)]="article.checked" [nzDisabled]="article.disabled" (nzCheckedChange)="refreshStatus()"></td>
+            <td>{{article.title}}</td>
+            <td>{{article.intro}}</td>
+            <td>{{article.tech_category.name}}</td>
+            <td>{{article.label.name}}</td>
+            <td><button nz-button nzType="primary" (click)="updateArticleById(article.id)">修改</button></td>
+          </tr>
+          </tbody>
+        </nz-table>
+
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;">Ant Design ©2017 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>
+<ng-template #trigger>
+  <i nz-icon type="up"></i>
+</ng-template>
