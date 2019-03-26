@@ -38,7 +38,11 @@
         <div nz-row>
           <div nz-col nzSpan="6"><button nz-button nzType="primary"  (click)="newArticle()"><i nz-icon type="plus" theme="outline"></i>新增</button></div>
           <div nz-col nzSpan="6"><button nz-button nzType="primary" (click)="deleteArticleById()"><i nz-icon type="delete" theme="outline"></i>删除</button></div>
-          <div nz-col nzSpan="6">请选择过滤输入框</div>
+          <div nz-col nzSpan="6">
+          <nz-select style="width: 200px;" nzAllowClear nzPlaceHolder="选择分类">
+            <nz-option *ngFor="let option of articles" [nzLabel]="option.tech_category.name" [nzValue]="option.tech_category.name" (click)="getFiliter(select)" #select></nz-option>
+          </nz-select>
+          </div>
           <div nz-col nzSpan="6"><nz-input-group nzSearch [nzSuffix]="suffixIconButton">
             <input type="text" nz-input placeholder="请输入内容">
           </nz-input-group>

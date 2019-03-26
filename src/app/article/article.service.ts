@@ -21,6 +21,11 @@ export class ArticleService {
     return this.http.get(url, this.httpOptions);
   }
 
+  getFilterIndex(pageSize, page, filter): Observable<any> {
+    const url = environment.apiUrl + '/articles?page_size=' + pageSize + '&page=' + page + '&filter=' + filter;
+    return this.http.get(url, this.httpOptions);
+  }
+
 
 
 

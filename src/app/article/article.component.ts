@@ -94,4 +94,15 @@ export class ArticleComponent implements OnInit {
 
   }
 
+  getFiliter(event): void {
+    this.articleService.getFilterIndex(this.pageSize, this.pageIndex, event).subscribe(
+      (data) => {
+        console.log(data);
+        this.articles = data.data;
+        this.total = data.total;
+        console.log(this.articles);
+      }
+    );
+  }
+
 }
