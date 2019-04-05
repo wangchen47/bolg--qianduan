@@ -40,12 +40,8 @@
           <nz-form-item>
             <nz-form-label [nzSpan]="56" nzFor="techCategory" nzRequired>分类</nz-form-label>
             <nz-form-control [nzSpan]="96">
-              <nz-select id="techCategory" formControlName="techCategory" nzPlaceHolder="请选择你的技术分类" nzAllowClear>
-                <nz-option nzValue="PHP" nzLabel="PHP"></nz-option>
-                <nz-option nzValue="Angular" nzLabel="Angular"></nz-option>
-                <nz-option nzValue="Node.js" nzLabel="Node.js"></nz-option>
-                <nz-option nzValue="Laravel" nzLabel="Laravel"></nz-option>
-                <nz-option nzValue="TinkPHP" nzLabel="TinkPHP"></nz-option>
+              <nz-select id="techCategory_id" formControlName="techCategory" nzPlaceHolder="请选择你的技术分类" nzAllowClear>
+                <nz-option *ngFor="let op of techCategory_trry" nzValue="op.tech_category_id" nzLabel="op.name"></nz-option>
               </nz-select>
               <nz-form-explain *ngIf="validateForm.get('techCategory').dirty && validateForm.get('techCategory').hasError('required')">请选择你的技术分类!</nz-form-explain>
             </nz-form-control>

@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
+import { ArticleCreateComponent } from './article-create/article-create.component';
 
 registerLocaleData(zh);
 
@@ -24,7 +25,8 @@ registerLocaleData(zh);
     HomeComponent,
     RegisterComponent,
     ArticleComponent,
-    ArticleFormComponent
+    ArticleFormComponent,
+    ArticleCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,10 @@ export class ArticleComponent implements OnInit {
   pageSize: number = 10;
   pageIndex: number = 1;
   total: number;
+  selectedValue: number = 1;
+  techCategory_trry = [{tech_category_id: '1', name: 'PHP'}, {tech_category_id: '2', name: 'Angular'} , {tech_category_id: '3', name: 'Node.js'}, {tech_category_id: '4', name: 'Laravel'}, {tech_category_id: '5', name: 'ThinkPHP'}];
+
+
 
   constructor(private articleService: ArticleService, private router: Router) { }
 
@@ -94,13 +98,13 @@ export class ArticleComponent implements OnInit {
 
   }
 
-  getFiliter(event): void {
-    this.articleService.getFilterIndex(this.pageSize, this.pageIndex, event).subscribe(
+  getFiliter(value: number): void {
+    this.articleService.getFilterIndex(value, this.pageSize, this.pageIndex).subscribe(
       (data) => {
         console.log(data);
-        this.articles = data.data;
         this.total = data.total;
-        console.log(this.articles);
+        this.articles = data.data;
+
       }
     );
   }

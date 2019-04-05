@@ -5,6 +5,7 @@ import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import {ArticleComponent} from './article/article.component';
 import {ArticleFormComponent} from './article-form/article-form.component';
+import {ArticleCreateComponent} from './article-create/article-create.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'article', component: ArticleComponent},
   { path: 'article-form', component: ArticleFormComponent},
+  { path: 'articles/create', component: ArticleCreateComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
