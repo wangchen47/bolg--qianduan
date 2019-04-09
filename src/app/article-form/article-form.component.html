@@ -41,18 +41,29 @@
             <nz-form-label [nzSpan]="56" nzFor="techCategory" nzRequired>分类</nz-form-label>
             <nz-form-control [nzSpan]="96">
               <nz-select id="techCategory_id" formControlName="techCategory" nzPlaceHolder="请选择你的技术分类" nzAllowClear>
-                <nz-option *ngFor="let op of techCategory_trry" nzValue="op.tech_category_id" nzLabel="op.name"></nz-option>
+                <nz-option *ngFor="let op of techCategory_trry" nzValue="{{op.tech_category_id}}" nzLabel="{{op.name}}"></nz-option>
               </nz-select>
               <nz-form-explain *ngIf="validateForm.get('techCategory').dirty && validateForm.get('techCategory').hasError('required')">请选择你的技术分类!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-label [nzSpan]="56" nzRequired>标签</nz-form-label>
+          <nz-form-label [nzSpan]="56" nzRequired>标签</nz-form-label>
+          <nz-form-control [nzSpan]="96" nzHasFeedback>
+            <input nz-input formControlName="label" placeholder="请输入文章标签">
+            <nz-form-explain *ngIf="validateForm.get('label').dirty && validateForm.get('label').errors">
+              <ng-container *ngIf="validateForm.get('label').hasError('required')">
+                标签不能为空！
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="56" nzRequired>作者</nz-form-label>
             <nz-form-control [nzSpan]="96" nzHasFeedback>
-              <input nz-input formControlName="label" placeholder="请输入文章标签">
-              <nz-form-explain *ngIf="validateForm.get('label').dirty && validateForm.get('label').errors">
-                <ng-container *ngIf="validateForm.get('label').hasError('required')">
-                  标签不能为空！
+              <input nz-input formControlName="createdUser" placeholder="请输入文章作者">
+              <nz-form-explain *ngIf="validateForm.get('createdUser').dirty && validateForm.get('createdUser').errors">
+                <ng-container *ngIf="validateForm.get('createdUser').hasError('required')">
+                  作者不能为空！
                 </ng-container>
               </nz-form-explain>
             </nz-form-control>

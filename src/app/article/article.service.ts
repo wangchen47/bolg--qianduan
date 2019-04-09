@@ -27,7 +27,4 @@ export class ArticleService {
     return this.http.get(url, this.httpOptions);
   }
 
-
-
-
 }

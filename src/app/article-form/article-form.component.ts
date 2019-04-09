@@ -20,7 +20,8 @@ export class ArticleFormComponent implements OnInit {
       intro   : [ '', [ Validators.required ] ],
       content: [ '', [ Validators.required ] ],
       techCategory : [ '', [ Validators.required ] ],
-      label : [ '', [ Validators.required ] ]
+      label : [ '', [ Validators.required ] ],
+      createdUser : [ '', [ Validators.required ] ],
     });
   }
 
