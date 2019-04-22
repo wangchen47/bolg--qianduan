@@ -16,12 +16,15 @@ export class ArticleComponent implements OnInit {
   sortValue = null;
   articles: Array<Article>;
   allChecked = false;
+  disabled = false;
   indeterminate = false;
   displayData = [];
   pageSize: number = 10;
   pageIndex: number = 1;
   total: number;
   selectedValue: number = 1;
+  idAll = [];
+  idg = [];
   techCategory_trry = [{tech_category_id: '1', name: 'PHP'}, {tech_category_id: '2', name: 'Angular'} , {tech_category_id: '3', name: 'Node.js'}, {tech_category_id: '4', name: 'Laravel'}, {tech_category_id: '5', name: 'ThinkPHP'}];
 
 
@@ -43,6 +46,10 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticles(this.pageSize, this.pageIndex, '').subscribe(
       (data) => {
         console.log(data);
+        for (const item of data.data) {
+          item.checked = false;
+          item.disabled = false;
+        }
         this.articles = data.data;
         this.total = data.total;
         console.log(this.articles);
@@ -51,7 +58,7 @@ export class ArticleComponent implements OnInit {
   }
 
   updateArticleById(id): void {
-    this.router.navigateByUrl("articles/" + id + "/edit");
+    this.router.navigateByUrl('/articles/' + id + '/edit');
   }
 
   currentPageDataChange($event: Array<object>): void {
@@ -64,6 +71,16 @@ export class ArticleComponent implements OnInit {
     const allUnChecked = this.displayData.filter(value => !value.disabled).every(value => !value.checked);
     this.allChecked = allChecked;
     this.indeterminate = (!allChecked) && (!allUnChecked);
+    if (this.articles) {
+    this.idAll = this.articles.filter(value => value.checked === true);
+    }
+    console.log(this.idAll);
+    const result = [];
+    for (let i = 0; i < this.idAll.length; i++) {
+      result.push(this.idAll[i].id);
+    }
+    this.idg = result;
+    console.log(this.idg);
   }
 
   checkAll(value: boolean): void {
@@ -91,11 +108,18 @@ export class ArticleComponent implements OnInit {
   }
 
   newArticle(): void {
+    this.router.navigateByUrl('/articles/create');
 
   }
 
   deleteArticleById(): void {
-
+    const id = this.idg;
+    console.log(id);
+    this.articleService.deleteArticles(id).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
   }
 
   getFiliter(value: number): void {
@@ -107,6 +131,22 @@ export class ArticleComponent implements OnInit {
 
       }
     );
+  }
+
+  getSurch(filter: string): void {
+    this.articleService.getArticles(this.pageSize, this.pageIndex, filter).subscribe((data) => {
+      console.log(data);
+      this.articles = data.data;
+      this.total = data.total;
+    },
+      (error) => {
+        console.log(error);
+      }
+      );
+  }
+
+  getIndex(id): void {
+    this.router.navigateByUrl('/article-index/' + id);
   }
 
 }

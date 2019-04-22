@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {Article} from './article';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,11 @@ export class ArticleService {
   getFilterIndex(id, pageSize, page): Observable<any> {
     const url = environment.apiUrl + '/articles-filiter/' + id + '/page_size=' + pageSize + '/page=' + page;
     return this.http.get(url, this.httpOptions);
+  }
+
+  deleteArticles(id): Observable<any> {
+    const url = environment.apiUrl + '/articles/' + id;
+    return this.http.delete(url,  this.httpOptions);
   }
 
 }

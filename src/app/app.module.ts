@@ -15,6 +15,8 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticleFormComponent } from './article-form/article-form.component';
 import { ArticleCreateComponent } from './article-create/article-create.component';
+import { ArticleEditComponent } from './article-edit/article-edit.component';
+import { IndexArticleComponent } from './index-article/index-article.component';
 
 registerLocaleData(zh);
 
@@ -26,7 +28,9 @@ registerLocaleData(zh);
     RegisterComponent,
     ArticleComponent,
     ArticleFormComponent,
-    ArticleCreateComponent
+    ArticleCreateComponent,
+    ArticleEditComponent,
+    IndexArticleComponent
   ],
   imports: [
     BrowserModule,

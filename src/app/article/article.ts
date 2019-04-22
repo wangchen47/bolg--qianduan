@@ -13,6 +13,7 @@ export class Article {
   public label;
   public tech_category;
   public created_user;
+  public user;
   checked: boolean;
   disabled: boolean;
 }

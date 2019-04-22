@@ -6,6 +6,7 @@
         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
           <nz-form-item>
             <nz-form-label [nzSpan]="56" nzRequired>标题</nz-form-label>
+            <input nz-input formControlName="id" type="hidden" *ngIf="model">
             <nz-form-control [nzSpan]="96" nzHasFeedback>
               <input nz-input formControlName="title" placeholder="请输入文章标题">
               <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">

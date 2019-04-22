@@ -44,10 +44,10 @@
           </nz-select>
           </div>
           <div nz-col nzSpan="6"><nz-input-group nzSearch [nzSuffix]="suffixIconButton">
-            <input type="text" nz-input placeholder="请输入内容">
+            <input type="text" nz-input placeholder="请输入内容" #articleName (change)="getSurch(articleName.value)">
           </nz-input-group>
             <ng-template #suffixIconButton>
-              <button nz-button nzType="primary" nzSearch ><i nz-icon type="search"></i></button>
+              <button nz-button nzType="primary" nzSearch  (click)="getSurch(articleName.value)"><i nz-icon type="search"></i></button>
             </ng-template>
           </div>
         </div>
@@ -70,16 +70,18 @@
             <th>文章简介</th>
             <th>技术分类</th>
             <th nzShowSort nzSortKey="label">标签分类</th>
+            <th>作者</th>
             <th>操作</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let article of articles">
+          <tr *ngFor="let article of articles" (click)="getIndex(article.id)">
             <td nzShowCheckbox [(nzChecked)]="article.checked" [nzDisabled]="article.disabled" (nzCheckedChange)="refreshStatus()"></td>
             <td>{{article.title}}</td>
             <td>{{article.intro}}</td>
             <td>{{article.tech_category.name}}</td>
             <td>{{article.label.name}}</td>
+            <td>{{article.user.name}}</td>
             <td><button nz-button nzType="primary" (click)="updateArticleById(article.id)">修改</button></td>
           </tr>
           </tbody>

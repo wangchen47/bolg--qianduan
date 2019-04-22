@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder,  FormGroup,  Validators} from '@angular/forms';
 import {Article} from '../article/article';
 
@@ -11,11 +11,15 @@ export class ArticleFormComponent implements OnInit {
 
   validateForm: FormGroup;
   @Output() onSubmitValue = new EventEmitter();
+  @Input() model: Article;
 
   techCategory_trry = [{tech_category_id: '1', name: 'PHP'}, {tech_category_id: '2', name: 'Angular'} , {tech_category_id: '3', name: 'Node.js'}, {tech_category_id: '4', name: 'Laravel'}, {tech_category_id: '5', name: 'ThinkPHP'}];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
     this.validateForm = this.fb.group({
+      id: [ ''],
       title: [ '', [ Validators.required ] ],
       intro   : [ '', [ Validators.required ] ],
       content: [ '', [ Validators.required ] ],
@@ -23,9 +27,18 @@ export class ArticleFormComponent implements OnInit {
       label : [ '', [ Validators.required ] ],
       createdUser : [ '', [ Validators.required ] ],
     });
-  }
+      if (this.model) {
+        this.validateForm.patchValue({
+          id: this.model.id,
+          title: this.model.title,
+          intro: this.model.intro,
+          content: this.model.content,
+          techCategory: this.model.tech_category_id,
+          label: this.model.label.name,
+          createdUser: this.model.user.name,
+        });
+      }
 
-  ngOnInit() {
   }
 
   submitForm = ($event, value: Article) => {
